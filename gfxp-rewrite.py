@@ -1,48 +1,52 @@
-import pygame
+import pygame as _pygame
 import tkinter as tk
+import sys as _sys
+
 class Window:
     def __init__(self, use_pygame=True):
         self.pygame_enabled = use_pygame
-        if pygame_enabled:
-            pygame.init()
+        if use_pygame:
+            _pygame.init()
         else:
-            root = tk.Tk()
-            root.withdraw()
+            self.root = tk.Tk()
+            self.root.withdraw()
         
     def window(self, title, size=(640, 480)):
         if self.pygame_enabled:
-            return pygame.display.set_mode(size)
+            self.root = _pygame.display.set_mode(size)
         else:
-            win = tk.Tk()
-            win.geometry(str(size[0]) + "x" + str(size[1]))
-            win.title(title)
-            return win
+            self.root = tk.Tk()
+            self.root.geometry(str(size[0]) + "x" + str(size[1]))
+            self.root.title(title)
+    def export_root(self):
+        return self.root
 
-    def quit(root=None):
-        if pygame_enabled:
+    def quit(self, root=None):
+        if self.pygame_enabled:
             pygame.quit()
-            exit()
+            _sys.exit()
         else:
             root.destroy()
-            exit()
+            _sys.exit()
 
-def mainloop(root=None):
-    if not pygame_enabled:
-        root.mainloop()
-    else:
-        pygame.display.flip()
+    def mainloop(self, root=None):
+        if not self.pygame_enabled:
+            root.mainloop()
+        else:
+            _pygame.display.flip()
         
-def update(root=None):
-    if not pygame_enabled:
-        root.update()
-    else:
-        pygame.display.update()
+    def update(self, root=None):
+        if not self.pygame_enabled:
+            root.update()
+        else:
+            _pygame.display.update()
+            _pygame.display.flip()
 
-def label(text, root=None, fsize = 20, font="Arial"):
-    if pygame_enabled:
-        return pygame.font.SysFont(font, fsize).render(text, True, (255, 255, 255))
-    else:
-        return tk.Label(root, text=text, font=(font, fsize))
+    def label(self, text, root=None, fsize = 20, font="Arial"):
+        if self.pygame_enabled:
+            return _pygame.font.SysFont(font, fsize).render(text, True, (255, 255, 255))
+        else:
+            return tk.Label(root, text=text, font=(font, fsize))
     
 def button(text, root=None, command=None):
     if pygame_enabled:
