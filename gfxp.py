@@ -1,11 +1,3 @@
-#this is gfx plus
-#it is based on tkinter and pygame
-
-#gfxp.init(pygame=True)
-
-#how to create a window:
-#gfxp.window(title, width=640, height=480, pygame=True/False)
-
 import pygame
 import tkinter as tk
 
