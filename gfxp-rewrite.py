@@ -55,23 +55,23 @@ class Window:
         else:
             return tk.Button(self.root, text=text, command=lambda: command())
         
-def entry(root=None):
-    if pygame_enabled:
-        print("ERROR: You cannot use entries in pygame.")
-    else:
-        return tk.Entry(root)
+    def entry(self):
+        if self.pygame_enabled:
+            print("ERROR: You cannot use entries in pygame.")
+        else:
+            return tk.Entry(root)
 
-def entry_get(textbox):
-    if pygame_enabled:
-        print("ERROR: You cannot use textboxes in pygame.")
-    else:
-        return textbox.get()
+    def entry_get(self, textbox):
+        if self.pygame_enabled:
+            print("ERROR: You cannot use textboxes in pygame.")
+        else:
+            return textbox.get()
 
-def entry_set(textbox, text):
-    if pygame_enabled:
-        print("ERROR: You cannot use textboxes in pygame.")
-    else:
-        textbox.insert(0, text)
+    def entry_set(self, textbox, text):
+        if self.pygame_enabled:
+            print("ERROR: You cannot use textboxes in pygame.")
+        else:
+            textbox.insert(0, text)
         
 def drawshape(shape, color, surface):
     if pygame_enabled:
