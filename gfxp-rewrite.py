@@ -73,33 +73,33 @@ class Window:
         else:
             textbox.insert(0, text)
         
-def drawshape(shape, color, surface):
-    if pygame_enabled:
-        pygame.draw.polygon(surface, color, shape)
-    else:
-        print("ERROR: You cannot draw shapes in tkinter.")
+    def drawshape(self, shape, color, surface):
+        if self.pygame_enabled:
+            pygame.draw.polygon(surface, color, shape)
+        else:
+            print("ERROR: You cannot draw shapes in tkinter.")
         
-def drawline(start, end, color, surface):
-    if pygame_enabled:
-        pygame.draw.line(surface, color, start, end)
-    else:
-        print("ERROR: You cannot draw lines in tkinter.")
+    def drawline(self, start, end, color, surface):
+        if self.pygame_enabled:
+            pygame.draw.line(surface, color, start, end)
+        else:
+            print("ERROR: You cannot draw lines in tkinter.")
 
 def help():
     print("GFXP HELP")
-    print("Initializing: gfxp.init(pygame=True/False)")
+    print("Initializing: gfxp.Window(pygame=True/False)")
     print("pygame=True means that pygame will be used, otherwise tkinter will be used.")
-    print("Creating a window: gfxp.window(title, size=(w, h))")
-    print("Creating a label: gfxp.label(text)")
-    print("Creating a button: gfxp.button(text, command=lambda: command())")
-    print("Creating a textbox: gfxp.textbox() (TK only)")
-    print("Getting text from a textbox: gfxp.textbox_get(textbox) (TK only)")
-    print("Setting text in a textbox: gfxp.textbox_set(textbox, text) (TK only)")
-    print("Drawing a shape: gfxp.drawshape(shape, color, surface) (Pygame only)")
-    print("Drawing a line: gfxp.drawline(start, end, color, surface) (Pygame only)")
-    print("Quitting: gfxp.quit()")
-    print("Mainloop: gfxp.mainloop()")
-    print("Update screen: gfxp.update()")
+    print("Creating a window: Window.window(title, size=(w, h))")
+    print("Creating a label: Window.label(text)")
+    print("Creating a button: Window.button(text, command=lambda: command())")
+    print("Creating a textbox: Window.textbox() (TK only)")
+    print("Getting text from a textbox: Window.textbox_get(textbox) (TK only)")
+    print("Setting text in a textbox: Window.textbox_set(textbox, text) (TK only)")
+    print("Drawing a shape: Window.drawshape(shape, color, surface) (Pygame only)")
+    print("Drawing a line: Window.drawline(start, end, color, surface) (Pygame only)")
+    print("Quitting: Window.quit()")
+    print("Mainloop (override for pygame): Window.mainloop()")
+    print("Update screen: Window.update()")
     ep = input("Would you like to see an example program? (y/n)")
     if ep == "y":
         sample()
