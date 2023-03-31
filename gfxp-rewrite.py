@@ -18,7 +18,7 @@ class Window:
             self.root = tk.Tk()
             self.root.geometry(str(size[0]) + "x" + str(size[1]))
             self.root.title(title)
-    def export_root(self):
+    def get_root(self):
         return self.root
 
     def quit(self):
@@ -105,9 +105,8 @@ def help():
         sample()
 
 def sample():
-    init(pygame=False)
-    win = window("Example Program")
-    win.tk_setPalette(["#ff8800"])
+    win = Window("Example Program", use_pygame = false)
+    win.root.tk_setPalette(["#ff8800"])
     lb = label("This is an example of GFXP!", win, fsize=40)
     lb.place(x=10, y=10)
     bt = button("Click me!", win, lambda: print("You clicked me!"))
