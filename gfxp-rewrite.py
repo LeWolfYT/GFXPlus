@@ -1,5 +1,5 @@
 import pygame as _pygame
-import tkinter as tk
+import tkinter as _tk
 import sys as _sys
 
 class Window:
@@ -8,14 +8,14 @@ class Window:
         if use_pygame:
             _pygame.init()
         else:
-            self.root = tk.Tk()
+            self.root = _tk.Tk()
             self.root.withdraw()
         
     def window(self, title, size=(640, 480)):
         if self.pygame_enabled:
             self.root = _pygame.display.set_mode(size)
         else:
-            self.root = tk.Tk()
+            self.root = _tk.Tk()
             self.root.geometry(str(size[0]) + "x" + str(size[1]))
             self.root.title(title)
     def get_root(self):
@@ -46,20 +46,20 @@ class Window:
         if self.pygame_enabled:
             return _pygame.font.SysFont(font, fsize).render(text, True, (255, 255, 255))
         else:
-            return tk.Label(self.root, text=text, font=(font, fsize))
+            return _tk.Label(self.root, text=text, font=(font, fsize))
     
     def button(self, text, command=None):
         if self.pygame_enabled:
             print("WARNING: You cannot use buttons in pygame, as this functionality is easily implemented using a label().")
             return label(text, root)
         else:
-            return tk.Button(self.root, text=text, command=lambda: command())
+            return _tk.Button(self.root, text=text, command=lambda: command())
         
     def entry(self):
         if self.pygame_enabled:
             print("ERROR: You cannot use entries in pygame.")
         else:
-            return tk.Entry(root)
+            return _tk.Entry(root)
 
     def entry_get(self, textbox):
         if self.pygame_enabled:
@@ -77,7 +77,7 @@ class Window:
         if self.pygame_enabled:
             pygame.draw.polygon(surface, color, shape)
         else:
-            print("ERROR: You cannot draw shapes in tkinter.")
+            print("ERROR: You cannot draw shapes in _tkinter.")
         
     def drawline(self, start, end, color, surface):
         if self.pygame_enabled:
