@@ -23,7 +23,7 @@ class Window:
 
     def quit(self):
         if self.pygame_enabled:
-            pygame.quit()
+            _pygame.quit()
             _sys.exit()
         else:
             self.root.destroy()
@@ -73,15 +73,15 @@ class Window:
         else:
             textbox.insert(0, text)
         
-    def drawshape(self, shape, color, surface):
+    def drawshape(self, shape, color):
         if self.pygame_enabled:
-            pygame.draw.polygon(surface, color, shape)
+            _pygame.draw.polygon(surface, color, shape)
         else:
             print("ERROR: You cannot draw shapes in _tkinter.")
         
     def drawline(self, start, end, color, surface):
         if self.pygame_enabled:
-            pygame.draw.line(surface, color, start, end)
+            _pygame.draw.line(surface, color, start, end)
         else:
             print("ERROR: You cannot draw lines in tkinter.")
 
